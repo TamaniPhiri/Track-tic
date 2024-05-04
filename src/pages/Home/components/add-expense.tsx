@@ -14,21 +14,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/Components/ui/select";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useRecoilState } from "recoil";
 import { categoryAtom } from "@/atoms/atoms";
+import { Button } from "@/Components/ui/button";
 
 const AddExpense = () => {
   const [categories, setCategories] = useRecoilState(categoryAtom);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
 
-  const handleCategoryChange = (event) => {
+  const handleCategoryChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedCategory(event.target.value);
   };
 
-  const handleExpenseAmountChange = (event) => {
-    setExpenseAmount(parseFloat(event.target.value));
+  const handleExpenseAmountChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setExpenseAmount(event.target.value);
   };
 
   const handleAddExpense = () => {
@@ -67,11 +68,11 @@ const AddExpense = () => {
         <SheetHeader>
           <SheetTitle className="text-white">Add Expense</SheetTitle>
           <SheetDescription className="gap-4 flex flex-col">
-            <Select>
+            <Select value={selectedCategory}>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Category" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent onChange={handleCategoryChange}>
                 <SelectItem value="shopping">Shopping</SelectItem>
                 <SelectItem value="transportation">Transportation</SelectItem>
                 <SelectItem value="food">Food</SelectItem>
@@ -85,8 +86,11 @@ const AddExpense = () => {
             <Input
               className=" bg-black border-neutral-600"
               placeholder="Amount"
-              type="number"
+              type="tel"
+              value={expenseAmount}
+              onChange={handleExpenseAmountChange}
             />
+            <Button>Add</Button>
           </SheetDescription>
         </SheetHeader>
       </SheetContent>
