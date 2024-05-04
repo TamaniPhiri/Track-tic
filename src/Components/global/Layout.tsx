@@ -1,7 +1,11 @@
-import React from "react";
+import { FC, ReactNode } from "react";
 
-const Layout = () => {
-  return <></>;
+interface Props {
+  children: ReactNode;
+}
+
+const Layout: FC<Props> = ({ children }) => {
+  return <>{children}</>;
 };
 
 export default Layout;
