@@ -1,15 +1,13 @@
 import { ICategory } from "@/types/interface";
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 
 export const categoryAtom = atom<ICategory>({
   key: "categoryAtom",
   default: {
-    shopping: [
-      {
-        id: 0,
-        amount: 0,
-      },
-    ],
+    shopping: [],
     transportation: [],
     food: [],
     healthcare: [],
@@ -18,4 +16,5 @@ export const categoryAtom = atom<ICategory>({
     savings: [],
     Miscellaneous: [],
   },
+  effects_UNSTABLE: [persistAtom],
 });
