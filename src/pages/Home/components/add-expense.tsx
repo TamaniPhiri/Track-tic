@@ -11,7 +11,7 @@ const AddExpense = () => {
   return (
     <Sheet>
       <SheetTrigger>Open</SheetTrigger>
-      <SheetContent side={"bottom"} className=" min-h-[50vh]">
+      <SheetContent side={"bottom"} className="min-h-[50vh] bg-black">
         <SheetHeader>
           <SheetTitle>Are you absolutely sure?</SheetTitle>
           <SheetDescription>
