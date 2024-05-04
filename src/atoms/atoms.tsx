@@ -3,7 +3,12 @@ import { atom } from "recoil";
 export const categoryAtom = atom({
   key: "categoryAtom",
   default: {
-    shopping: [],
+    shopping: [
+      {
+        id: 0,
+        amount: 0,
+      },
+    ],
     transportation: [],
     food: [],
     healthcare: [],
