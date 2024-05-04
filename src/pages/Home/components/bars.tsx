@@ -1,5 +1,9 @@
 const Bars = () => {
-  return <div>bars</div>;
+  return (
+    <div>
+      <div></div>
+    </div>
+  );
 };
 
 export default Bars;
