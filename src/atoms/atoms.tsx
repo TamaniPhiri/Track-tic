@@ -1,6 +1,7 @@
+import { ICategory } from "@/types/interface";
 import { atom } from "recoil";
 
-export const categoryAtom = atom({
+export const categoryAtom = atom<ICategory>({
   key: "categoryAtom",
   default: {
     shopping: [
