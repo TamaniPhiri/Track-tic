@@ -19,15 +19,15 @@ import { useRecoilState } from "recoil";
 import { categoryAtom } from "@/atoms/atoms";
 import { Button } from "@/Components/ui/button";
 import { IValues } from "@/types/interface";
+import { useToast } from "@/Components/ui/use-toast";
 
 const AddExpense = () => {
   const [categories, setCategories] = useRecoilState(categoryAtom);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
+  const { toast } = useToast();
 
-  const handleCategoryChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedCategory(event.target.value);
-  };
+  console.log(categories);
 
   const handleExpenseAmountChange = (event: ChangeEvent<HTMLInputElement>) => {
     setExpenseAmount(event.target.value);
@@ -46,6 +46,10 @@ const AddExpense = () => {
       });
 
       setExpenseAmount("");
+      toast({
+        title: "Success",
+        description: `Added the expense under ${selectedCategory}`,
+      });
     }
   };
   return (
@@ -75,11 +79,14 @@ const AddExpense = () => {
         <SheetHeader>
           <SheetTitle className="text-white">Add Expense</SheetTitle>
           <SheetDescription className="gap-4 flex flex-col">
-            <Select value={selectedCategory}>
+            <Select
+              value={selectedCategory}
+              onValueChange={(e) => setSelectedCategory(e)}
+            >
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Category" />
               </SelectTrigger>
-              <SelectContent onChange={handleCategoryChange}>
+              <SelectContent>
                 <SelectItem value="shopping">Shopping</SelectItem>
                 <SelectItem value="transportation">Transportation</SelectItem>
                 <SelectItem value="food">Food</SelectItem>
