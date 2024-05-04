@@ -1,12 +1,12 @@
 import "./App.css";
+import { ThemeProvider } from "@/Components/theme-provider";
 import { Button } from "./Components/ui/button";
 
 function App() {
   return (
-    <>
-      <Button variant={"outline"}>Hrllo</Button>
-      <h1>Vite + React</h1>
-    </>
+    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+      <Button>hello</Button>
+    </ThemeProvider>
   );
 }
 
