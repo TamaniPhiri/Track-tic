@@ -1,4 +1,4 @@
-interface IValues {
+export interface IValues {
   id: number;
   amount: number;
 }

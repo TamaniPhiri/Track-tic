@@ -18,6 +18,7 @@ import { ChangeEvent, useState } from "react";
 import { useRecoilState } from "recoil";
 import { categoryAtom } from "@/atoms/atoms";
 import { Button } from "@/Components/ui/button";
+import { IValues } from "@/types/interface";
 
 const AddExpense = () => {
   const [categories, setCategories] = useRecoilState(categoryAtom);
@@ -34,10 +35,16 @@ const AddExpense = () => {
 
   const handleAddExpense = () => {
     if (selectedCategory && expenseAmount) {
+      const newExpense: IValues = {
+        id: Date.now(),
+        amount: parseFloat(expenseAmount),
+      };
+
       setCategories({
         ...categories,
-        [selectedCategory]: [...categories[selectedCategory], expenseAmount],
+        [selectedCategory]: [...categories[selectedCategory], newExpense],
       });
+
       setExpenseAmount("");
     }
   };
@@ -90,7 +97,7 @@ const AddExpense = () => {
               value={expenseAmount}
               onChange={handleExpenseAmountChange}
             />
-            <Button>Add</Button>
+            <Button onClick={handleAddExpense}>Add</Button>
           </SheetDescription>
         </SheetHeader>
       </SheetContent>
