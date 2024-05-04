@@ -1,12 +1,12 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { ThemeProvider } from "@/Components/theme-provider";
-import { Button } from "./Components/ui/button";
+import { Home } from "lucide-react";
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <Button>hello</Button>
-    </ThemeProvider>
+    <Routes>
+      <Route path="/" Component={Home} />
+    </Routes>
   );
 }
 
